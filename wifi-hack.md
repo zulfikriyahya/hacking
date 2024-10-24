@@ -1,4 +1,4 @@
-```bash
+```shell
 airmon-ng start wlan0
 airodump-ng wlan0 # ingat BSSID dan CHANNEL AP victim
 
