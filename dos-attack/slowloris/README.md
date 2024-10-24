@@ -4,13 +4,13 @@
 
 Slowloris pada dasarnya adalah serangan HTTP Denial of Service yang mempengaruhi server berulir. Cara kerjanya seperti ini:
 
-Kami mulai membuat banyak permintaan HTTP.
+- Kami mulai membuat banyak permintaan HTTP.
 
-Kami mengirim header secara berkala (setiap ~15 detik) untuk menjaga koneksi tetap terbuka.
+- Kami mengirim header secara berkala (setiap ~15 detik) untuk menjaga koneksi tetap terbuka.
 
-Kami tidak pernah menutup koneksi kecuali server melakukannya. Jika server menutup koneksi, kami membuat koneksi baru dan terus melakukan hal yang sama.
+- Kami tidak pernah menutup koneksi kecuali server melakukannya. Jika server menutup koneksi, kami membuat koneksi baru dan terus melakukan hal yang sama.
 
-Ini menghabiskan pool thread server dan server tidak dapat membalas permintaan lainnya.
+- Ini menghabiskan pool thread server dan server tidak dapat membalas permintaan lainnya.
 
 ## Sitasi
 
