@@ -1,17 +1,20 @@
-# slowloris.py - Simple slowloris in Python
+# slowloris.py - Slowloris sederhana dalam Python
 
-## What is Slowloris?
-Slowloris is basically an HTTP Denial of Service attack that affects threaded servers. It works like this:
+## Apa itu Slowloris?
 
-1. We start making lots of HTTP requests.
-2. We send headers periodically (every ~15 seconds) to keep the connections open.
-3. We never close the connection unless the server does so. If the server closes a connection, we create a new one keep doing the same thing.
+Slowloris pada dasarnya adalah serangan HTTP Denial of Service yang mempengaruhi server berulir. Cara kerjanya seperti ini:
 
-This exhausts the servers thread pool and the server can't reply to other people.
+Kami mulai membuat banyak permintaan HTTP.
 
-## Citation
+Kami mengirim header secara berkala (setiap ~15 detik) untuk menjaga koneksi tetap terbuka.
 
-If you found this work useful, please cite it as
+Kami tidak pernah menutup koneksi kecuali server melakukannya. Jika server menutup koneksi, kami membuat koneksi baru dan terus melakukan hal yang sama.
+
+Ini menghabiskan pool thread server dan server tidak dapat membalas permintaan lainnya.
+
+## Sitasi
+
+Jika kamu menemukan karya ini berguna, harap sitasi sebagai
 
 ```bibtex
 @article{gkbrkslowloris,
@@ -23,48 +26,64 @@ If you found this work useful, please cite it as
 }
 ```
 
-## How to install and run?
+## Cara menginstal dan menjalankan?
 
-You can clone the git repo or install using **pip**. Here's how you run it.
+Kamu bisa mengkloning repo git atau menginstal menggunakan pip. Begini cara menjalankannya.
 
-* `sudo pip3 install slowloris`
-* `slowloris example.com`
+```
+sudo pip3 install slowloris
+```
 
-That's all it takes to install and run slowloris.py.
+```
+slowloris example.com
+```
 
-If you want to clone using git instead of pip, here's how you do it.
+Hanya itu yang diperlukan untuk menginstal dan menjalankan slowloris.py.
 
-* `git clone https://github.com/gkbrk/slowloris.git`
-* `cd slowloris`
-* `python3 slowloris.py example.com`
+Jika kamu ingin mengkloning menggunakan git alih-alih pip, begini caranya.
 
-### SOCKS5 proxy support
+```
+git clone https://github.com/gkbrk/slowloris.git`
+```
 
-However, if you plan on using the `-x` option in order to use a SOCKS5 proxy for connecting instead of a direct connection over your IP address, you will need to install the `PySocks` library (or any other implementation of the `socks` library) as well. [`PySocks`](https://github.com/Anorov/PySocks) is a fork from [`SocksiPy`](http://socksipy.sourceforge.net/) by GitHub user @Anorov and can easily be installed by adding `PySocks` to the `pip` command above or running it again like so:
+```
+cd slowloris
+```
 
-* `sudo pip3 install PySocks`
+```
+python3 slowloris.py example.com
+```
 
-You can then use the `-x` option to activate SOCKS5 support and the `--proxy-host` and `--proxy-port` option to specify the SOCKS5 proxy host and its port, if they are different from the standard `127.0.0.1:8080`.
+### Dukungan proxy SOCKS5
 
-## Configuration options
-It is possible to modify the behaviour of slowloris with command-line
-arguments. In order to get an up-to-date help document, just run
+Namun, jika kamu berencana menggunakan opsi `-x` untuk menggunakan proxy SOCKS5 untuk terhubung daripada koneksi langsung melalui alamat IP-mu, kamu perlu menginstal library `PySocks` (atau implementasi lain dari library `socks`) juga. [`PySocks`](https://github.com/Anorov/PySocks) adalah fork dari [`SocksiPy`](http://socksipy.sourceforge.net/) oleh pengguna GitHub @Anorov dan dapat dengan mudah diinstal dengan menambahkan `PySocks` ke perintah `pip` di atas atau menjalankannya lagi seperti ini:
+
+```
+sudo pip3 install PySocks
+```
+
+Kamu kemudian bisa menggunakan opsi `-x` untuk mengaktifkan dukungan SOCKS5 dan opsi `--proxy-host` dan `--proxy-port` untuk menentukan host dan port proxy SOCKS5, jika berbeda dari standar `127.0.0.1:8080`.
+
+## Opsi konfigurasi
+
+Mungkin untuk memodifikasi perilaku slowloris dengan argumen baris perintah. Untuk mendapatkan dokumen bantuan terbaru, cukup jalankan
 `slowloris -h`.
 
-* -p, --port
-* * Port of webserver, usually 80
-* -s, --sockets
-* * Number of sockets to use in the test
-* -v, --verbose
-* * Increases logging (output on terminal)
-* -ua, --randuseragents
-* * Randomizes user-agents with each request
-* -x, --useproxy
-* * Use a SOCKS5 proxy for connecting
-* --https
-* * Use HTTPS for the requests
-* --sleeptime
-* * Time to sleep between each header sent
+- -p, --port
+- - Port server web, biasanya 80
+- -s, --sockets
+- - Jumlah soket yang digunakan dalam pengujian
+- -v, --verbose
+- - Meningkatkan logging (output di terminal)
+- -ua, --randuseragents
+- - Mengacak user-agents dengan setiap permintaan
+- -x, --useproxy
+- - Gunakan proxy SOCKS5 untuk terhubung
+- --https
+- - Gunakan HTTPS untuk permintaan
+- --sleeptime
+- - Waktu tidur antara setiap header yang dikirim
 
-## License
-The code is licensed under the MIT License.
+## Lisensi
+
+Kode ini dilisensikan di bawah Lisensi MIT.
